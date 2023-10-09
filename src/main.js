@@ -1,32 +1,14 @@
-// import { createApp } from 'vue'
-// import './style.css'
-// import App from './App.vue'
-
-// createApp(App).mount('#app')
-
 import { createApp } from 'vue'
-// import './style.css'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import App from './App.vue'
 import router from './router'
+import pinia from './store'
+import './styles/index.scss'
 
-// import { createRouter, createWebHashHistory } from 'vue-router'
-// import Home from './views/Home.vue'
-// import About from './views/About.vue'
-// const routes = [{
-//     path: "/",
-//     name: "Home",
-//     component: Home
-// },
-// {
-//     path: "/about",
-//     name: "About",
-//     component: About
-// },]
-// const router = createRouter({
-//     history: createWebHashHistory(),
-//     routes: routes
-// })
+const app = createApp(App)
 
-
-
-createApp(App).use(router).mount('#app')
+app.use(pinia)
+app.use(router)
+app.use(ElementPlus)
+app.mount('#app')
