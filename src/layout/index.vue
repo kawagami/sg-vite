@@ -1,10 +1,13 @@
 <script setup>
+import Logo from './logo/index.vue';
 </script>
 
 <template>
     <div class="layout_container">
         <!-- 左側 sidebar -->
-        <div class="layout_slider">123</div>
+        <div class="layout_slider">
+            <Logo></Logo>
+        </div>
 
         <!-- 頂部 navigation -->
         <div class="layout_tabbar">456</div>
