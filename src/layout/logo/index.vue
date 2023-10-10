@@ -16,7 +16,7 @@ import setting from '../../setting';
     color: white;
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: $base-menu-logo-padding;
 
     img {
         width: 40px;
