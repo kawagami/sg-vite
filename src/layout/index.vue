@@ -1,5 +1,9 @@
 <script setup>
 import Logo from './logo/index.vue';
+import Menu from './menu/index.vue';
+import useUserStore from '../store/modules/user';
+
+let userStore = useUserStore();
 </script>
 
 <template>
@@ -14,16 +18,7 @@ import Logo from './logo/index.vue';
             <el-scrollbar class="scrollbar">
                 <!-- menu 組件 -->
                 <el-menu background-color="#00152" text-color="white">
-                    <el-menu-item index="1">首頁</el-menu-item>
-                    <el-menu-item index="2">數據</el-menu-item>
-
-                    <!-- collapse menu -->
-                    <el-sub-menu index="3">
-                        <template #title>權限管理</template>
-                        <el-menu-item index="3-1">user 管理</el-menu-item>
-                        <el-menu-item index="3-2">role 管理</el-menu-item>
-                        <el-menu-item index="3-3">menu 管理</el-menu-item>
-                    </el-sub-menu>
+                    <Menu :menuList="userStore.menuRoutes"></Menu>
                 </el-menu>
             </el-scrollbar>
         </div>
@@ -48,11 +43,15 @@ import Logo from './logo/index.vue';
         width: $base-menu-width;
         height: 100vh;
         background: $base-menu-color;
-        // color: white;
+        color: white;
 
         .scrollbar {
             width: 100%;
             height: calc(100vh - $base-menu-logo-height - ($base-menu-logo-padding * 2));
+
+            .el-menu {
+                border-right: none;
+            }
         }
     }
 

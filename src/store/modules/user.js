@@ -1,10 +1,13 @@
 import { defineStore } from "pinia";
 import { reqLogin } from "../../api/user";
+// 引入 routes
+import { ConstantRoute } from "../../router/routers";
 
 let useUserStore = defineStore('User', {
     state: () => {
         return {
-            token: localStorage.getItem("sgtoken")
+            token: localStorage.getItem("sgtoken"),
+            menuRoutes: ConstantRoute
         };
     },
     actions: {
