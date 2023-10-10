@@ -42,9 +42,12 @@
 
 <script setup>
 defineProps(['menuList']);
+import { useRouter } from 'vue-router';
+
+let $router = useRouter();
 
 const goRoute = (vc) => {
-    console.log(vc.index);
+    $router.push(vc.index);
 }
 </script>
 <script>

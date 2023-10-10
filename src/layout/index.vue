@@ -1,6 +1,7 @@
 <script setup>
 import Logo from './logo/index.vue';
 import Menu from './menu/index.vue';
+import Main from './main/index.vue';
 import useUserStore from '../store/modules/user';
 
 let userStore = useUserStore();
@@ -28,7 +29,7 @@ let userStore = useUserStore();
 
         <!-- 內容 -->
         <div class="layout_main">
-            <p style="height: 20000px; background-color: blue;"></p>
+            <Main></Main>
         </div>
     </div>
 </template>
