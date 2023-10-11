@@ -1,10 +1,14 @@
 <script setup>
+import { useRoute } from 'vue-router';
 import Logo from './logo/index.vue';
 import Menu from './menu/index.vue';
 import Main from './main/index.vue';
+import Tabbar from './tabbar/index.vue';
 import useUserStore from '../store/modules/user';
 
 let userStore = useUserStore();
+
+let $route = useRoute();
 </script>
 
 <template>
@@ -18,14 +22,16 @@ let userStore = useUserStore();
             <!-- 滾動組件 -->
             <el-scrollbar class="scrollbar">
                 <!-- menu 組件 -->
-                <el-menu background-color="#00152" text-color="white">
+                <el-menu :default-active="$route.path" background-color="#001529" text-color="white">
                     <Menu :menuList="userStore.menuRoutes"></Menu>
                 </el-menu>
             </el-scrollbar>
         </div>
 
         <!-- 頂部 navigation -->
-        <div class="layout_tabbar">456</div>
+        <div class="layout_tabbar">
+            <Tabbar></Tabbar>
+        </div>
 
         <!-- 內容 -->
         <div class="layout_main">
@@ -38,7 +44,7 @@ let userStore = useUserStore();
 .layout_container {
     width: 100%;
     height: 100vh;
-    background: red;
+    // background: white;
 
     .layout_slider {
         width: $base-menu-width;
@@ -60,7 +66,6 @@ let userStore = useUserStore();
         position: fixed;
         width: calc(100% - $base-menu-width);
         height: $base-tabbar-height;
-        background: cyan;
         top: 0;
         left: $base-menu-width;
     }

@@ -19,15 +19,6 @@ export const ConstantRoute = [
                     icon: 'HomeFilled',
                 },
             },
-            {
-                path: '/test',
-                component: () => import('../views/home/index.vue'),
-                meta: {
-                    title: '測試',
-                    hidden: false,
-                    icon: 'QuestionFilled',
-                },
-            }
         ]
     },
     {
