@@ -1,5 +1,5 @@
 <template>
-    <el-button icon="Refresh" size="small" circle />
+    <el-button icon="Refresh" size="small" circle @click="updateRefresh" />
     <el-button icon="FullScreen" size="small" circle />
     <el-button icon="Setting" size="small" circle />
 
@@ -20,7 +20,15 @@
     </el-dropdown>
 </template>
 
-<script setup></script>
+<script setup>
+import useLayOutSettingStore from '../../../store/modules/setting';
+
+let layOutSettingStore = useLayOutSettingStore();
+
+const updateRefresh = () => {
+    layOutSettingStore.refresh = !layOutSettingStore.refresh;
+};
+</script>
 <script>
 export default {
     name: "Setting",
