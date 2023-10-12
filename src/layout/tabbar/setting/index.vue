@@ -21,5 +21,10 @@
 </template>
 
 <script setup></script>
+<script>
+export default {
+    name: "Setting",
+};
+</script>
 
 <style scoped lang="scss"></style>

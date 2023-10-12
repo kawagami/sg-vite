@@ -1,12 +1,17 @@
 <template>
     <div class="logo">
-        <img :src="setting.logo" alt="">
+        <img :src="setting.logo" alt="" />
         <p>{{ setting.title }}</p>
     </div>
 </template>
 
 <script setup>
-import setting from '../../setting';
+import setting from "../../setting";
+</script>
+<script>
+export default {
+    name: "Logo",
+};
 </script>
 
 <style scoped lang="scss">
