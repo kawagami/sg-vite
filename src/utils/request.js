@@ -9,6 +9,8 @@ let request = axios.create({
 // 請求攔截
 request.interceptors.request.use((config) => {
     // 可在這裡控制 headers
+    // config.headers.set('Authorization', 'Bearer eyJ0e.....etc');
+
     return config;
 })
 
