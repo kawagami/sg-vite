@@ -12,6 +12,9 @@ const app = createApp(App)
 
 app.use(pinia)
 app.use(router)
+// router 加上 permission
+import './permission';
+
 app.use(ElementPlus)
 app.use(globalComponent)
 app.mount('#app')
