@@ -2,11 +2,12 @@
 import { Message, Lock } from '@element-plus/icons-vue';
 import { onMounted, reactive, ref } from 'vue';
 import useUserStore from '../../store/modules/user';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { ElNotification } from 'element-plus';
 
 let loading = ref(false);
 
+let $route = useRoute();
 let $router = useRouter();
 
 let useStore = useUserStore();
@@ -54,7 +55,10 @@ const login = async () => {
     try {
         await useStore.userLogin(login_form);
 
-        $router.push('/');
+        // 判斷是否有 query redirect
+        let redirect = $route.query.redirect;
+
+        $router.push({ path: redirect || '/' });
 
         ElNotification({
             type: 'success',

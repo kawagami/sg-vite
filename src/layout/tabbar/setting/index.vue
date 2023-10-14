@@ -14,7 +14,7 @@
         </span>
         <template #dropdown>
             <el-dropdown-menu>
-                <el-dropdown-item>登出</el-dropdown-item>
+                <el-dropdown-item @click="logout">登出</el-dropdown-item>
             </el-dropdown-menu>
         </template>
     </el-dropdown>
@@ -23,6 +23,11 @@
 <script setup>
 import useLayOutSettingStore from '../../../store/modules/setting';
 import useUserStore from '../../../store/modules/user';
+import { useRouter, useRoute } from 'vue-router';
+
+let $route = useRoute();
+
+let $router = useRouter();
 
 let userStore = useUserStore();
 
@@ -39,6 +44,15 @@ const fullScreen = () => {
     } else {
         document.exitFullscreen();
     }
+};
+
+const logout = () => {
+    // request server remove token
+    // remove user data of store
+    // redirect to login page
+    userStore.userLogout();
+
+    $router.push({ path: '/login', query: { redirect: $route.path } });
 };
 </script>
 <script>

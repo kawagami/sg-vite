@@ -3,7 +3,7 @@ import { reqLogin, reqUserInfo } from "../../api/user";
 // 引入 routes
 import { ConstantRoute } from "../../router/routers";
 // token
-import { SET_TOKEN, GET_TOKEN } from "../../utils/token";
+import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from "../../utils/token";
 
 let useUserStore = defineStore('User', {
     state: () => {
@@ -34,6 +34,12 @@ let useUserStore = defineStore('User', {
             if (result.status == 200) {
                 this.email = result.data.data[0].email;
             }
+        },
+        userLogout() {
+            // 通知 server remove token
+            this.token = ''
+            this.email = ''
+            REMOVE_TOKEN('sgtoken');
         },
     },
     getters: {}
