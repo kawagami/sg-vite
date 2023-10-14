@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { reqLogin } from "../../api/user";
+import { reqLogin, reqUserInfo } from "../../api/user";
 // 引入 routes
 import { ConstantRoute } from "../../router/routers";
 // token
@@ -8,9 +8,9 @@ import { SET_TOKEN, GET_TOKEN } from "../../utils/token";
 let useUserStore = defineStore('User', {
     state: () => {
         return {
-            // token: localStorage.getItem("sgtoken"),
             token: GET_TOKEN("sgtoken"),
-            menuRoutes: ConstantRoute
+            menuRoutes: ConstantRoute,
+            email: '',
         };
     },
     actions: {
@@ -28,7 +28,13 @@ let useUserStore = defineStore('User', {
             } else {
                 return Promise.reject(new Error(result.data.message));
             }
-        }
+        },
+        async userInfo() {
+            let result = await reqUserInfo();
+            if (result.status == 200) {
+                this.email = result.data.data[0].email;
+            }
+        },
     },
     getters: {}
 });

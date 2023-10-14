@@ -7,7 +7,7 @@
 
     <el-dropdown>
         <span class="el-dropdown-link">
-            Dropdown List
+            {{ userStore.email }}
             <el-icon class="el-icon--right">
                 <arrow-down />
             </el-icon>
@@ -22,6 +22,9 @@
 
 <script setup>
 import useLayOutSettingStore from '../../../store/modules/setting';
+import useUserStore from '../../../store/modules/user';
+
+let userStore = useUserStore();
 
 let layOutSettingStore = useLayOutSettingStore();
 

@@ -3,5 +3,5 @@ export const SET_TOKEN = (key, value) => {
 }
 
 export const GET_TOKEN = (key) => {
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
 }
