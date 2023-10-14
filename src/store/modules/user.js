@@ -33,6 +33,9 @@ let useUserStore = defineStore('User', {
             let result = await reqUserInfo();
             if (result.status == 200) {
                 this.email = result.data.data[0].email;
+                return 'ok';
+            } else {
+                return Promise.reject(new Error(result.data.message));
             }
         },
         userLogout() {

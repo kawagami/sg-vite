@@ -22,10 +22,7 @@ export default {
 <template>
     <div class="layout_container">
         <!-- 左側 sidebar -->
-        <div
-            class="layout_slider"
-            :class="{ fold: LayOutSettingStore.fold ? true : false }"
-        >
+        <div class="layout_slider">
             <Logo></Logo>
 
             <!-- menu -->
@@ -33,30 +30,20 @@ export default {
             <!-- 滾動組件 -->
             <el-scrollbar class="scrollbar">
                 <!-- menu 組件 -->
-                <el-menu
-                    :default-active="$route.path"
-                    background-color="#001529"
-                    text-color="white"
-                    :collapse="LayOutSettingStore.fold ? true : false"
-                >
+                <el-menu :default-active="$route.path" background-color="#001529" text-color="white"
+                    :collapse="LayOutSettingStore.fold ? true : false">
                     <Menu :menuList="userStore.menuRoutes"></Menu>
                 </el-menu>
             </el-scrollbar>
         </div>
 
         <!-- 頂部 navigation -->
-        <div
-            class="layout_tabbar"
-            :class="{ fold: LayOutSettingStore.fold ? true : false }"
-        >
+        <div class="layout_tabbar" :class="{ fold: LayOutSettingStore.fold ? true : false }">
             <Tabbar></Tabbar>
         </div>
 
         <!-- 內容 -->
-        <div
-            class="layout_main"
-            :class="{ fold: LayOutSettingStore.fold ? true : false }"
-        >
+        <div class="layout_main" :class="{ fold: LayOutSettingStore.fold ? true : false }">
             <Main></Main>
         </div>
     </div>
@@ -77,17 +64,11 @@ export default {
 
         .scrollbar {
             width: 100%;
-            height: calc(
-                100vh - $base-menu-logo-height - ($base-menu-logo-padding * 2)
-            );
+            height: calc(100vh - $base-menu-logo-height - ($base-menu-logo-padding * 2));
 
             .el-menu {
                 border-right: none;
             }
-        }
-
-        &.fold {
-            width: $base-menu-min-width;
         }
     }
 
