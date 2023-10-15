@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { reqLogin, reqUserInfo } from "../../api/user";
+import { reqImages } from "../../api/user";
 // 引入 routes
 import { ConstantRoute } from "../../router/routers";
 // token
@@ -43,6 +44,16 @@ let useUserStore = defineStore('User', {
             this.token = ''
             this.email = ''
             REMOVE_TOKEN('sgtoken');
+        },
+        async getImages() {
+            let result = await reqImages();
+
+            // console.log(result);
+            if (result.status == 200) {
+                return result.data;
+            } else {
+                return Promise.reject(new Error(result.data.message));
+            }
         },
     },
     getters: {}

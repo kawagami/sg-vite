@@ -148,6 +148,39 @@ export const ConstantRoute = [
         ],
     },
     {
+        path: '/sg',
+        component: () => import('../layout/index.vue'),
+        name: 'sg',
+        meta: {
+            title: '三國',
+            hidden: false,
+            icon: 'Trophy',
+        },
+        redirect: '/sg/article',
+        children: [
+            {
+                path: '/sg/article',
+                component: () => import('../views/sg/article/index.vue'),
+                name: 'article',
+                meta: {
+                    title: '文章',
+                    hidden: false,
+                    icon: 'Memo',
+                },
+            },
+            {
+                path: '/sg/image',
+                component: () => import('../views/sg/image/index.vue'),
+                name: 'image',
+                meta: {
+                    title: '圖片',
+                    hidden: false,
+                    icon: 'Picture',
+                },
+            },
+        ],
+    },
+    {
         path: '/:pathMatch(.*)*',
         redirect: '/404',
         name: 'Any',
