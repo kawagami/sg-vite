@@ -11,4 +11,5 @@ docker run \
     -w /app \
     -p 5173:5173 \
     -u $(id -u):$(id -g) \
-    node:16 npm run dev -- --host
+    node:16-slim \
+    npm run dev -- --host
