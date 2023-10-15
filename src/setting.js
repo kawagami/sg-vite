@@ -1,5 +1,5 @@
 export default {
     title: 'awa homes',
-    logo: '/public/logo.png',
+    logo: '/logo.png',
     documentTitle: 'Kawa',
 }
