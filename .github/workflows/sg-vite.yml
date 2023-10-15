@@ -22,4 +22,4 @@ jobs:
         script: |
           cd sg-vite
           git pull
-          docker run --rm -it -v $(pwd):/app -v /home/kawa/.npm:/.npm -w /app -u $(id -u):$(id -g) node:16-slim npm run build
+          docker run --rm -v $(pwd):/app -v /home/kawa/.npm:/.npm -w /app -u $(id -u):$(id -g) node:16-slim npm run build
