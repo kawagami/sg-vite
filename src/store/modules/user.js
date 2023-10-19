@@ -9,7 +9,7 @@ import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from "../../utils/token";
 let useUserStore = defineStore('User', {
     state: () => {
         return {
-            token: GET_TOKEN("sgtoken"),
+            token: GET_TOKEN("TOKEN"),
             menuRoutes: ConstantRoute,
             email: '',
         };
@@ -18,12 +18,10 @@ let useUserStore = defineStore('User', {
         async userLogin(data) {
             let result = await reqLogin(data);
 
-            // console.log(result);
             if (result.status == 200) {
-                this.token = result.data.data.token;
+                this.token = result.data.token;
 
-                // localStorage.setItem("sgtoken", result.data.data.token);
-                SET_TOKEN("sgtoken", result.data.data.token);
+                SET_TOKEN("TOKEN", result.data.token);
 
                 return 'ok';
             } else {
@@ -33,7 +31,7 @@ let useUserStore = defineStore('User', {
         async userInfo() {
             let result = await reqUserInfo();
             if (result.status == 200) {
-                this.email = result.data.data[0].email;
+                this.email = result.data.email;
                 return 'ok';
             } else {
                 return Promise.reject(new Error(result.data.message));
@@ -43,12 +41,11 @@ let useUserStore = defineStore('User', {
             // 通知 server remove token
             this.token = ''
             this.email = ''
-            REMOVE_TOKEN('sgtoken');
+            REMOVE_TOKEN("TOKEN");
         },
         async getImages() {
             let result = await reqImages();
 
-            // console.log(result);
             if (result.status == 200) {
                 return result.data;
             } else {

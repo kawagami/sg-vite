@@ -5,7 +5,7 @@ import request from "../../utils/request";
 // }
 
 const API = {
-    LOGIN_URL: '/user/login',
+    LOGIN_URL: '/login',
     USERINRO_URL: '/user/info',
     IMAGE_URL: '/image',
 }
