@@ -90,7 +90,7 @@ export default {
         position: absolute;
         width: calc(100% - $base-menu-width - ($base-main-padding * 2));
         height: calc(100vh - $base-tabbar-height - ($base-main-padding * 2));
-        background: yellowgreen;
+        background: rgb(178, 180, 176);
         top: $base-tabbar-height;
         left: $base-menu-width;
         padding: $base-main-padding;
