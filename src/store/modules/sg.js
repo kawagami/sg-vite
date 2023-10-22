@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { reqBlogInfo, reqBlogStore, reqTest } from "../../api/sg";
+import { reqBlogInfo, reqBlogStore } from "../../api/sg";
 
 let useSgStore = defineStore('Sg', {
     state: () => {
