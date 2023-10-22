@@ -159,6 +159,16 @@ export const ConstantRoute = [
         redirect: '/sg/article',
         children: [
             {
+                path: '/sg/add',
+                component: () => import('../views/sg/add/index.vue'),
+                name: 'add',
+                meta: {
+                    title: '新增文章',
+                    hidden: false,
+                    icon: 'Memo',
+                },
+            },
+            {
                 path: '/sg/article',
                 component: () => import('../views/sg/article/index.vue'),
                 name: 'article',
