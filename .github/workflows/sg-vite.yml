@@ -10,16 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-    - name: Deploy to Vultr
-      uses: appleboy/ssh-action@v1.0.0
+    - name: Install Node.js
+      uses: actions/setup-node@v4
       with:
-        host: ${{ secrets.VULTR_HOST }}
-        username: ${{ secrets.VULTR_USERNAME }}
-        key: ${{ secrets.VULTR_SSH_KEY }}
-        script: |
-          cd sg-vite
-          git pull
-          docker run --rm -v $(pwd):/app -v /home/kawa/.npm:/.npm -w /app -u $(id -u):$(id -g) node:16-slim npm run build
+        node-version: '18'
+
+    - name: Install dependencies and build
+      run: |
+        npm install
+        npm run build
+
+    - name: Deploy to VPS
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.VULTR_HOST }}  # VPS 的 IP 位址
+        username: ${{ secrets.VULTR_USERNAME }}  # VPS 的登入帳號
+        key: ${{ secrets.VULTR_SSH_KEY }}  # SSH 私鑰的 GitHub secret 名稱
+        # port: ${{ secrets.VPS_SSH_PORT }}  # SSH 連接的埠號
+        source: "dist/"  # 建置後的檔案路徑（請根據你的 Vite 專案設定）
+        target: ${{ secrets.VULTR_TARGET_DIR }}  # Nginx 伺服器的檔案目錄路徑
