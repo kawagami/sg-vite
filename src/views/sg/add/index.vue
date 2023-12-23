@@ -10,27 +10,26 @@
         </el-form-item>
 
         <template v-for="(item, index) in form.components" :key="index">
-            <el-form-item label="文字">
-                <el-input v-model="item.article" :rows="2" type="textarea" placeholder="Please input" />
-            </el-form-item>
+            <div class="dynamic_form">
+                <el-form-item label="文字">
+                    <el-input v-model="item.article" :rows="2" type="textarea" placeholder="Please input" />
+                </el-form-item>
 
-            <el-form-item label="圖片">
-                <el-upload list-type="picture" v-model:file-list="item.raw_image" class="upload-demo" :action="ACTION"
-                    :headers="headers" :on-preview="handlePictureCardPreview" :on-exceed="handleExceed" multiple
-                    :on-change="handleChange" :before-upload="handleBeforeUpload" :on-success="handleUploadSuccess">
-                    <template #trigger>
-                        <el-button type="primary">select file</el-button>
-                    </template>
-                    <!-- <el-button class="ml-3" type="success" @click="submitUpload(item.index)">
-                        upload to server
-                    </el-button> -->
-                    <template #tip>
-                        <div class="el-upload__tip text-red">
-                            limit 1 file, new file will cover the old file
-                        </div>
-                    </template>
-                </el-upload>
-            </el-form-item>
+                <el-form-item label="圖片">
+                    <el-upload list-type="picture" v-model:file-list="item.raw_image" class="upload-demo" :action="ACTION"
+                        :headers="headers" :on-preview="handlePictureCardPreview" :on-exceed="handleExceed" multiple
+                        :on-change="handleChange" :before-upload="handleBeforeUpload" :on-success="handleUploadSuccess">
+                        <template #trigger>
+                            <el-button type="primary">select file</el-button>
+                        </template>
+                        <template #tip>
+                            <div class="el-upload__tip text-red">
+                                limit 1 file, new file will cover the old file
+                            </div>
+                        </template>
+                    </el-upload>
+                </el-form-item>
+            </div>
         </template>
 
         <el-form-item>
@@ -194,4 +193,11 @@ const addComponent = () => {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.dynamic_form {
+    padding: 10px;
+    margin: 5px;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+</style>
