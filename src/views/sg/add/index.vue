@@ -16,7 +16,7 @@
 
             <el-form-item label="圖片">
                 <el-upload list-type="picture" v-model:file-list="item.raw_image" class="upload-demo" :action="ACTION"
-                    :headers="headers" :limit="1" :on-preview="handlePictureCardPreview" :on-exceed="handleExceed"
+                    :headers="headers" :on-preview="handlePictureCardPreview" :on-exceed="handleExceed" multiple
                     :on-change="handleChange" :before-upload="handleBeforeUpload" :on-success="handleUploadSuccess">
                     <template #trigger>
                         <el-button type="primary">select file</el-button>
@@ -76,6 +76,7 @@ const form = reactive({
             article: '',
             raw_image: ref([]),
             image: {},
+            images: [],
         },
     ],
 })
@@ -84,11 +85,17 @@ const form = reactive({
 const onSubmit = async () => {
     // 整理成 server 接受的格式
     form.components.forEach(component => {
+        // 單圖片處理
         if (component.raw_image[0] && component.raw_image[0].response) {
             // https://juejin.cn/post/7026620645207179272
             // 不用解構會不觸發 vue 的響應式系統，因為本來的值是引用的，導致不會實際改值
             component.image = { ...component.raw_image[0].response };
         }
+
+        // 多圖片處理
+        component.raw_image.forEach(image => {
+            component.images.push(image.response);
+        });
     });
 
     try {
@@ -182,6 +189,7 @@ const addComponent = () => {
         article: '',
         raw_image: ref([]),
         image: {},
+        images: [],
     });
 };
 </script>
