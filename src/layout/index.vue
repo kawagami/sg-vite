@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from "vue";
 import { useRoute } from "vue-router";
 import Logo from "./logo/index.vue";
 import Menu from "./menu/index.vue";
@@ -12,6 +13,13 @@ let userStore = useUserStore();
 let $route = useRoute();
 
 let LayOutSettingStore = useLayOutSettingStore();
+
+onMounted(() => {
+    // 手機畫面時直接摺疊左側選單
+    if (window.innerWidth <= 768) {
+        LayOutSettingStore.fold = true;
+    }
+})
 </script>
 <script>
 export default {
